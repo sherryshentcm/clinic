@@ -107,7 +107,7 @@ function Footer({ go }) {
               <span className="nm"><span className="cn">夏草堂</span><span className="en">Xia's TCM</span></span>
             </div>
             <p style={{ fontSize: 14.5, lineHeight: 1.8 }}>
-              {t("世医传承，凭脉察色，药到病除。以传统医道，调理沉疴顽疾与亚健康。",
+              {t("世医传承，望闻问切，药到病除。以传统医道，调理沉疴顽疾与亚健康。",
               "A lineage of healers. Diagnosis by pulse and observation; the remedy meets the illness. Traditional medicine for stubborn ailments and sub-health.")}
             </p>
           </div>

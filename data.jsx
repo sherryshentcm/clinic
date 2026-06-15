@@ -15,7 +15,7 @@ const CLINIC = {
   phoneRaw: "4168250982",
   address: "1675 The Chase #24b, Mississauga, ON L5M 5Y7",
   bio: {
-    zh: "夏医师出生于世医之家，青年时期幸得道医罗青子点拨，后经多年拜师学艺历练，深悟传统医道。临床诊病不用病人先开口，凭脉察色尽知病在何处，病根起源，每每药到病除，屡起沉疴。您若有久治不愈的病症，或许将有幸从此解除痛苦。",
+    zh: "夏医师出生于世医之家，青年时期幸得道医罗青子点拨，后经多年拜师学艺历练，深悟传统医道。临床诊病不用病人先开口，望闻问切尽知病在何处，病根起源，每每药到病除，屡起沉疴。您若有久治不愈的病症，或许将有幸从此解除痛苦。",
     en: "Practitioner Xia was born into a family of physicians spanning generations. In his youth he was guided by the Taoist healer Luo Qingzi, and through many years of apprenticeship came to deeply understand the traditional way of medicine. In the clinic he diagnoses before the patient speaks a word — reading the pulse and complexion to know where the illness lies and where its root begins. Time and again the remedy meets the illness, and long-standing afflictions are lifted. If an ailment has long resisted treatment, here you may finally find relief.",
   },
   credentials: [

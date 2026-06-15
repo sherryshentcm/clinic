@@ -38,7 +38,7 @@ function AboutPage({ go }) {
   const ways = [
     { gl: "家", zh: "世医之家", en: "A lineage of physicians", dzh: "出生于数代行医的世医之家，自幼浸润于传统医道，耳濡目染、根基深厚。", den: "Born into generations of physicians, immersed in the traditional way of medicine from a young age — deeply rooted." },
     { gl: "师", zh: "道医点拨", en: "Guided by a master", dzh: "青年时期幸得道医罗青子点拨，后经多年拜师学艺历练，深悟传统医道之精微。", den: "In his youth, guided by the Taoist healer Luo Qingzi, then many years of apprenticeship refined his understanding." },
-    { gl: "证", zh: "临证如神", en: "Mastery in the clinic", dzh: "诊病不用病人先开口，凭脉察色尽知病在何处、病根起源，每每药到病除。", den: "He diagnoses before a word is spoken — reading pulse and complexion to find the illness and its root." },
+    { gl: "证", zh: "临证如神", en: "Mastery in the clinic", dzh: "诊病不用病人先开口，望闻问切尽知病在何处、病根起源，每每药到病除。", den: "He diagnoses before a word is spoken — reading pulse and complexion to find the illness and its root." },
   ];
   return (
     <main>
@@ -53,8 +53,8 @@ function AboutPage({ go }) {
             </div>
             <div className="fade">
               <div className="no">夏 扬　·　Xia, Yang R.TCMP/AC</div>
-              <h3>{t("凭脉察色，尽知病源", "Diagnosis by Pulse & Observation")}</h3>
-              <div className="en">{t("Diagnosis by pulse & observation", "凭脉察色，尽知病源")}</div>
+              <h3>{t("望闻问切，尽知病源", "Diagnosis by Pulse & Observation")}</h3>
+              <div className="en">{t("Diagnosis by pulse & observation", "望闻问切，尽知病源")}</div>
               <p>{lang === "en" ? CLINIC.bio.en : CLINIC.bio.zh}</p>
               <ul>
                 {CLINIC.credentials.map((c, i) => <li key={i}>{lang === "en" ? c.en : c.zh}</li>)}

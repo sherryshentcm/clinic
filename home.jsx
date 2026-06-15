@@ -10,7 +10,7 @@ function Hero({ go }) {
         <Slot id="hero-room" ph={t("诊室 / 药柜照片", "clinic & herb cabinet")} radius={0} />
       </div>
       <div className="scrim"></div>
-      <div className="vert">凭脉察色　·　屡起沉疴</div>
+      <div className="vert">望闻问切　·　屡起沉疴</div>
       <div className="stamp"><SealStamp lg>夏氏<br/>世医</SealStamp></div>
       <div className="wrap">
         <div className="hero-eyebrow">{t("世医之家 · 传统医道 · 安省注册中医针灸", "A lineage of healers · Registered Acupuncture · Ontario")}</div>
@@ -47,7 +47,7 @@ function StorySection({ go }) {
       <div className="wrap">
         <div className="grid">
           <div className="portrait fade">
-            <Slot id="home-portrait" ph={t("夏医师肖像", "Practitioner Xia portrait")} />
+            <Slot id="home-portrait" src="images/xia-yang.jpg" ph={t("夏医师肖像", "Practitioner Xia portrait")} />
             <div className="badge"><SealStamp solid>脉诊<br/>查病</SealStamp></div>
           </div>
           <div className="fade">
