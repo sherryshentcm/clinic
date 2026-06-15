@@ -30,5 +30,21 @@
 <script type="text/babel" src="home.jsx"></script>
 <script type="text/babel" src="pages.jsx"></script>
 <script type="text/babel" src="app.jsx"></script>
+
+<!-- Netlify Identity widget: catches invite (#invite_token) and password-reset
+     (#recovery_token) links. Without this, those links just land on the homepage
+     and nothing happens. When a user logs in / accepts, send them to /admin/. -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", function (user) {
+      if (!user) {
+        window.netlifyIdentity.on("login", function () {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
 </body>
 </html>
