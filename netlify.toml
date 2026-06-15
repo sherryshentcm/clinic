@@ -1,0 +1,20 @@
+# Netlify configuration — 夏草堂 Xia's TCM
+# Static site, no build step (HTML + in-browser Babel/React + image-slot).
+# Just serve the project folder as-is.
+
+[build]
+  publish = "."
+  command = ""
+
+# Always revalidate the article content file so newly published articles
+# appear immediately (everything else can cache normally).
+[[headers]]
+  for = "/content/articles.json"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# Keep the CMS dashboard out of search results.
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex"

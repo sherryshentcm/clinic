@@ -1,0 +1,89 @@
+# ============================================================
+# 夏草堂 — Decap CMS configuration
+# This drives the /admin dashboard where you add & edit articles.
+# It reads and writes content/articles.json — the same file the
+# website loads — so anything you publish here appears on the site.
+# ============================================================
+
+backend:
+  name: git-gateway      # works with Netlify Identity (see Publishing Guide)
+  branch: main           # change if your default branch has another name
+
+# Where uploaded article images are stored / served from.
+media_folder: "images"
+public_folder: "images"
+
+# A small editorial safeguard: changes go through a draft → review → publish
+# flow instead of going live instantly.
+publish_mode: editorial_workflow
+
+locale: "zh_Hans"
+
+collections:
+  - name: "articles"
+    label: "养生资讯 · Articles"
+    label_singular: "Article"
+    description: "诊所养生文章。新增、编辑、发布。/ Clinic wellness articles."
+    files:
+      - name: "articles"
+        label: "文章列表 · All articles"
+        file: "content/articles.json"
+        format: "json"
+        fields:
+          - label: "文章 · Articles"
+            name: "articles"
+            label_singular: "文章 Article"
+            widget: "list"
+            summary: "{{fields.title.zh}}  /  {{fields.title.en}}"
+            fields:
+              - { label: "网址别名 Slug (英文、用连字符, e.g. summer-heart)", name: "slug", widget: "string", pattern: ['^[a-z0-9-]+$', '只能用小写字母、数字和连字符'] }
+
+              - label: "分类 Category"
+                name: "cat"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "English", name: "en", widget: "string" }
+
+              - label: "标题 Title"
+                name: "title"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "English", name: "en", widget: "string" }
+
+              - label: "日期 Date (显示文字, e.g. 2026 · 立夏)"
+                name: "date"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "string" }
+                  - { label: "English", name: "en", widget: "string" }
+
+              - label: "作者 Author"
+                name: "author"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "string", default: "夏 扬" }
+                  - { label: "English", name: "en", widget: "string", default: "Xia, Yang" }
+
+              - label: "阅读时长 Read time"
+                name: "read"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "string", default: "约 4 分钟" }
+                  - { label: "English", name: "en", widget: "string", default: "4 min read" }
+
+              - label: "摘要 Excerpt (卡片上显示的一句话)"
+                name: "ex"
+                widget: "object"
+                fields:
+                  - { label: "中文", name: "zh", widget: "text" }
+                  - { label: "English", name: "en", widget: "text" }
+
+              - label: "正文 Body"
+                name: "body"
+                widget: "object"
+                hint: "用 '## ' 开头表示小标题；用 '> ' 开头表示提示框。Use '## ' for a subhead, '> ' for a note box."
+                fields:
+                  - { label: "中文正文", name: "zh", widget: "text" }
+                  - { label: "English body", name: "en", widget: "text" }

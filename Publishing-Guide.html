@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏草堂 · Publishing Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.973 0.009 95); --paper-2: oklch(0.955 0.013 92); --card: oklch(0.989 0.006 95);
+    --ink: oklch(0.255 0.018 152); --ink-soft: oklch(0.43 0.02 150); --ink-faint: oklch(0.585 0.018 148);
+    --sage: oklch(0.645 0.045 150); --pine: oklch(0.385 0.05 160); --pine-deep: oklch(0.285 0.042 162);
+    --seal: oklch(0.555 0.15 33); --gold: oklch(0.74 0.075 78);
+    --line: oklch(0.885 0.014 110); --line-soft: oklch(0.925 0.01 105);
+    --serif: "Noto Serif SC", Georgia, serif; --sans: "Noto Sans SC", -apple-system, sans-serif; --lat: "EB Garamond", Georgia, serif;
+    --mono: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background: var(--paper); color: var(--ink); font-family: var(--sans); line-height:1.7; -webkit-font-smoothing:antialiased;
+    background-image: radial-gradient(oklch(0.5 0.03 150 / .022) 1px, transparent 1px); background-size: 22px 22px; }
+  .wrap{ max-width: 880px; margin:0 auto; padding: 0 32px; }
+  .serif{ font-family: var(--serif); }
+
+  header.top{ background: var(--pine-deep); color: oklch(0.96 0.012 90); padding: 70px 0 60px; position:relative; overflow:hidden; }
+  header.top .vert{ position:absolute; right:40px; top:-10px; font-family:var(--serif); font-size:150px; color: oklch(0.97 0.01 90/.06); }
+  .seal-dot{ width: 44px; height:44px; border-radius:9px; background: var(--seal); color: var(--paper); display:grid; place-items:center; font-family:var(--serif); font-weight:700; font-size:25px; }
+  header.top .kick{ font-family: var(--lat); font-style:italic; color: var(--gold); font-size: 18px; margin: 22px 0 12px; }
+  header.top h1{ font-family: var(--serif); font-weight:600; font-size: clamp(30px,5vw,46px); line-height:1.15; color: oklch(0.98 0.012 90); }
+  header.top p{ color: oklch(0.92 0.012 95/.85); font-size: 17px; margin-top: 16px; max-width: 60ch; }
+
+  section{ padding: 46px 0; border-bottom: 1px solid var(--line); }
+  .eyebrow{ font-family: var(--lat); font-style:italic; color: var(--seal); font-size: 16px; display:flex; align-items:center; gap:10px; margin-bottom: 12px; }
+  .eyebrow::before{ content:""; width:26px; height:1px; background: var(--seal); }
+  h2{ font-family: var(--serif); font-weight:600; font-size: 28px; letter-spacing:-.01em; }
+  h2 .cn{ color: var(--ink-faint); font-weight:400; font-size: 19px; margin-left: 8px; }
+  p.lead{ color: var(--ink-soft); font-size: 16.5px; margin-top: 12px; }
+  h3{ font-family: var(--serif); font-size: 19px; font-weight:600; margin: 26px 0 8px; }
+
+  .flow{ display:flex; flex-wrap:wrap; gap: 12px; margin-top: 22px; }
+  .flow .node{ background: var(--card); border:1px solid var(--line); border-radius: 12px; padding: 14px 18px; flex:1; min-width: 150px; }
+  .flow .node .n{ font-family: var(--lat); font-style:italic; color: var(--seal); font-size: 14px; }
+  .flow .node .t{ font-family: var(--serif); font-weight:600; font-size: 16px; margin-top: 3px; }
+  .flow .node .d{ font-size: 13.5px; color: var(--ink-soft); margin-top: 4px; }
+  .flow .arr{ align-self:center; color: var(--ink-faint); font-size: 20px; }
+
+  ol.steps{ counter-reset: s; list-style:none; margin-top: 18px; display:grid; gap: 14px; }
+  ol.steps > li{ counter-increment: s; position:relative; padding: 18px 22px 18px 60px; background: var(--card); border:1px solid var(--line); border-radius: 12px; }
+  ol.steps > li::before{ content: counter(s); position:absolute; left: 20px; top: 16px; font-family: var(--serif); font-weight:600; color: var(--seal); font-size: 20px; }
+  ol.steps b{ color: var(--ink); }
+  ol.steps code, p code, li code, td code{ font-family: var(--mono); font-size: 13px; background: var(--paper-2); border:1px solid var(--line-soft); border-radius: 5px; padding: 1px 6px; }
+  a.lnk{ color: var(--seal); text-decoration: underline; text-underline-offset: 2px; }
+
+  ul.plain{ list-style:none; margin-top: 12px; display:grid; gap: 9px; }
+  ul.plain li{ display:flex; gap: 11px; font-size: 15.5px; color: var(--ink-soft); }
+  ul.plain li::before{ content:""; width:7px; height:7px; border-radius:50%; background: var(--sage); margin-top:9px; flex:none; }
+
+  .fields{ width:100%; border-collapse: collapse; margin-top: 18px; font-size: 14.5px; }
+  .fields th{ text-align:left; font-family: var(--lat); font-style:italic; color: var(--ink-faint); font-weight:400; padding: 8px 12px; border-bottom: 1px solid var(--line); }
+  .fields td{ padding: 10px 12px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  .fields td:first-child{ font-family: var(--serif); font-weight:500; white-space:nowrap; }
+
+  .callout{ display:flex; gap: 16px; align-items:flex-start; background: oklch(0.555 0.15 33 / .06); border:1px solid oklch(0.555 0.15 33 / .25); border-radius: 14px; padding: 20px 24px; margin-top: 22px; }
+  .callout .mk{ width: 42px; height:42px; border-radius:9px; background: var(--seal); color: var(--paper); display:grid; place-items:center; font-family:var(--serif); font-size:16px; flex:none; }
+  .callout .t{ font-family: var(--serif); font-weight:600; font-size: 17px; }
+  .callout p{ color: var(--ink-soft); font-size: 14.5px; margin-top: 4px; }
+
+  .ex{ background: var(--pine-deep); color: oklch(0.93 0.015 95); border-radius: 14px; padding: 22px 26px; margin-top: 16px; font-family: var(--mono); font-size: 13px; line-height: 1.9; white-space: pre-wrap; }
+  .ex .hl{ color: var(--gold); }
+
+  footer{ padding: 40px 0 64px; color: var(--ink-faint); font-size: 13px; text-align:center; }
+  footer .seal-dot{ margin: 0 auto 12px; }
+  section:last-of-type{ border-bottom:none; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="vert">養</div>
+  <div class="wrap">
+    <div class="seal-dot">夏</div>
+    <div class="kick">夏草堂 Xia's TCM · Journal</div>
+    <h1>Publishing Guide<br>如何自己发布养生文章</h1>
+    <p>Everything you need to add articles to the site yourself, after it goes live — set up once, then publish from a simple dashboard. AI can help you draft; this explains how it all fits together.</p>
+  </div>
+</header>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">How it works · 运作方式</div>
+    <h2>One file, one dashboard <span class="cn">一处编辑，全站更新</span></h2>
+    <p class="lead">Every article lives in a single content file, <code>content/articles.json</code>. The website reads it, and the admin dashboard writes to it. You never touch code — you fill in a form and press Publish.</p>
+    <div class="flow">
+      <div class="node"><div class="n">01 — Draft</div><div class="t">Write with AI</div><div class="d">Draft the article (中 + EN) with an AI assistant.</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="n">02 — Review</div><div class="t">Dr. Xia approves</div><div class="d">Check accuracy & wording before it goes out.</div></div>
+      <div class="arr">→</div>
+      <div class="node"><div class="n">03 — Publish</div><div class="t">Paste into /admin</div><div class="d">Fill the form, press Publish — live in seconds.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ONE TIME SETUP -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">One-time setup · 首次设置（约 30 分钟）</div>
+    <h2>Putting the site &amp; dashboard online</h2>
+    <p class="lead">Do this once. It's free, and best done by whoever is comfortable with websites (or hand this to a developer — it's a standard setup). After this, adding articles needs no technical help.</p>
+    <ol class="steps">
+      <li>Create a free <b><a class="lnk" href="https://github.com">GitHub</a></b> account and upload this project's folder to a new repository (a "repo").</li>
+      <li>Create a free <b><a class="lnk" href="https://netlify.com">Netlify</a></b> account and choose <b>“Add new site → Import an existing project”</b>, then pick your GitHub repo. Netlify publishes your site at a free <code>your-name.netlify.app</code> address (you can connect a custom domain like <code>xiastcm.com</code> later).</li>
+      <li>In Netlify, open <b>Site configuration → Identity</b> and click <b>Enable Identity</b>.</li>
+      <li>Under Identity → <b>Services → Git Gateway</b>, click <b>Enable Git Gateway</b>. (This lets the dashboard save your articles.)</li>
+      <li>Under Identity → <b>Registration</b>, set it to <b>Invite only</b>, then <b>Invite</b> your own email. Accept the email invite and set a password.</li>
+      <li>Done. Visit <code>your-site-address/admin/</code> and log in with that email — you'll see the article dashboard.</li>
+    </ol>
+    <div class="callout">
+      <div class="mk">i</div>
+      <div><div class="t">A developer can do this in 15 minutes</div><p>If any of the above feels unfamiliar, the “Handoff to Claude Code” package or any web developer can wire it up — the configuration files (<code>admin/config.yml</code>) are already in the project, so it's plug-and-play.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADDING AN ARTICLE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Adding an article · 发布一篇文章</div>
+    <h2>The everyday part <span class="cn">日常操作</span></h2>
+    <p class="lead">Once set up, this is all you ever do. Log into <code>/admin/</code>, click <b>“养生资讯 · Articles” → New / 新增</b>, and fill in these fields:</p>
+    <table class="fields">
+      <thead><tr><th>Field 字段</th><th>What to enter 填写说明</th></tr></thead>
+      <tbody>
+        <tr><td>Slug</td><td>A short English web name, lowercase with hyphens — e.g. <code>autumn-cough</code>. Becomes the article's link.</td></tr>
+        <tr><td>分类 Category</td><td>e.g. 节气养生 / Seasonal Wellness. Both languages.</td></tr>
+        <tr><td>标题 Title</td><td>The headline, in 中文 and English.</td></tr>
+        <tr><td>日期 Date</td><td>Display text only — e.g. <code>2026 · 立秋</code> / <code>2026 · Early Autumn</code>.</td></tr>
+        <tr><td>作者 Author</td><td>夏 扬 / Xia, Yang — or 沈 宏 / Shen, Hong.</td></tr>
+        <tr><td>阅读时长 Read</td><td>e.g. 约 4 分钟 / 4 min read.</td></tr>
+        <tr><td>摘要 Excerpt</td><td>One sentence shown on the article card.</td></tr>
+        <tr><td>正文 Body</td><td>The full article. See formatting below.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Formatting the body 正文格式</h3>
+    <p class="lead">The body is plain text with two simple marks:</p>
+    <ul class="plain">
+      <li>Start a line with <code>## </code> to make a <b>subheading</b>.</li>
+      <li>Start a line with <code>&gt; </code> to make a <b>highlighted note box</b> (great for the “this is general information, please call to book” disclaimer).</li>
+      <li>Leave everything else as normal paragraphs. One line = one paragraph.</li>
+    </ul>
+    <div class="ex">## <span class="hl">起居：晚睡早起</span>
+夏日昼长夜短，可顺应天时稍晚入睡、清晨早起……
+
+## <span class="hl">饮食：清淡为主</span>
+暑天易贪凉饮冷，反伤脾胃……
+
+<span class="hl">&gt;</span> 以上为一般养生参考，非诊断或治疗建议。如有不适，欢迎来电预约。</div>
+
+    <h3>Article image 配图</h3>
+    <p class="lead">After publishing, open the live article and <b>drag a photo</b> onto the image area at the top — it saves automatically. (Or upload via the dashboard's media button.)</p>
+  </div>
+</section>
+
+<!-- AI WORKFLOW -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Drafting with AI · 用 AI 起草</div>
+    <h2>Let AI write the first draft</h2>
+    <p class="lead">Open any AI assistant and ask for a bilingual draft you can paste straight into the fields. A prompt like this works well:</p>
+    <div class="ex">请以中医养生的角度，写一篇面向大众的科普短文，主题：<span class="hl">「秋季润肺」</span>。
+要求：温和、通俗、不作疗效承诺；约 4 段，含 2–3 个小标题（用 ## 开头）；
+结尾加一句温馨提示（用 &gt; 开头），说明这是一般资讯、非诊断建议、欢迎来电预约。
+最后附上同样内容的英文版本。</div>
+    <ul class="plain">
+      <li>Ask for <b>both 中文 and English</b> in one go, so the two fields stay in sync.</li>
+      <li>Ask it to use <code>## </code> for subheads and a <code>&gt; </code> closing note — then it pastes in cleanly.</li>
+      <li>Keep it <b>general and educational</b> — no promises of cures or specific results.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- COMPLIANCE -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Before you publish · 发布前</div>
+    <h2>Always review first</h2>
+    <div class="callout">
+      <div class="mk">!</div>
+      <div>
+        <div class="t">AI drafts a first version — Dr. Xia has the final word 医师审核为准</div>
+        <p>This is health content from an Ontario-registered practitioner. Every article should be <b>read and approved by Dr. Xia</b> before publishing — both for clinical accuracy and because regulated health professionals have rules about claims and advertising. Avoid guarantees of results, naming specific outcomes, or anything that reads as a diagnosis. When in doubt, keep it general and end with “please call to book a consultation.”</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="seal-dot">夏</div>
+  夏草堂 Xia's TCM · Publishing Guide · once set up, you add and edit every article yourself from the dashboard
+</footer>
+
+</body>
+</html>

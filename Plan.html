@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>夏扬中医 · Website Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=EB+Garamond:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: oklch(0.973 0.009 95);
+    --paper-2: oklch(0.955 0.013 92);
+    --card: oklch(0.988 0.006 95);
+    --ink: oklch(0.27 0.018 152);
+    --ink-soft: oklch(0.44 0.02 150);
+    --ink-faint: oklch(0.60 0.018 148);
+    --sage: oklch(0.64 0.045 150);
+    --sage-deep: oklch(0.45 0.05 158);
+    --jade: oklch(0.53 0.05 165);
+    --seal: oklch(0.56 0.145 33);
+    --line: oklch(0.88 0.014 110);
+    --line-soft: oklch(0.92 0.01 105);
+    --serif: "Noto Serif SC", "EB Garamond", Georgia, serif;
+    --sans: "Noto Sans SC", -apple-system, "Helvetica Neue", sans-serif;
+    --lat: "EB Garamond", Georgia, serif;
+  }
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    background-image:
+      radial-gradient(oklch(0.5 0.03 150 / 0.025) 1px, transparent 1px);
+    background-size: 22px 22px;
+  }
+  .wrap{ max-width: 1000px; margin: 0 auto; padding: 0 32px; }
+
+  /* ---- top ribbon ---- */
+  .ribbon{
+    border-bottom: 1px solid var(--line);
+    background: oklch(0.97 0.009 95 / 0.8);
+    backdrop-filter: blur(6px);
+    position: sticky; top:0; z-index: 50;
+  }
+  .ribbon .wrap{ display:flex; align-items:center; justify-content:space-between; height: 60px; }
+  .ribbon .mark{ display:flex; align-items:center; gap:12px; font-family:var(--serif); font-weight:600; }
+  .seal-dot{
+    width: 30px; height:30px; border-radius:7px; background: var(--seal);
+    color: var(--paper); display:grid; place-items:center;
+    font-family: var(--serif); font-weight:700; font-size:17px; letter-spacing:-1px;
+  }
+  .ribbon nav{ display:flex; gap:26px; font-size:13px; color: var(--ink-soft); letter-spacing:.04em; }
+  .ribbon nav a{ color:inherit; text-decoration:none; }
+  .ribbon nav a:hover{ color: var(--sage-deep); }
+
+  /* ---- hero ---- */
+  header.hero{ padding: 86px 0 64px; }
+  .kicker{
+    font-family: var(--lat); font-style:italic; font-size: 18px; color: var(--sage-deep);
+    letter-spacing:.02em; margin-bottom: 22px;
+  }
+  .kicker::before{ content:"— "; color: var(--seal); font-style: normal; }
+  h1.title{
+    font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 6vw, 68px);
+    line-height: 1.08; letter-spacing:-.01em; max-width: 16ch;
+  }
+  .title em{ font-family: var(--lat); font-style: italic; font-weight: 400; color: var(--sage-deep); }
+  .lede{
+    margin-top: 26px; font-size: 18px; color: var(--ink-soft); max-width: 60ch; line-height:1.75;
+  }
+  .lede b{ color: var(--ink); font-weight:500; }
+
+  /* ---- section scaffolding ---- */
+  section.block{ padding: 30px 0 16px; }
+  .sec-head{ display:flex; align-items:baseline; gap:16px; margin-bottom: 30px; padding-bottom:14px; border-bottom: 1px solid var(--line); }
+  .sec-num{ font-family: var(--lat); font-style: italic; font-size: 17px; color: var(--seal); }
+  .sec-head h2{ font-family: var(--serif); font-weight:600; font-size: 27px; letter-spacing:-.01em; }
+  .sec-head .cn{ font-family: var(--serif); color: var(--ink-faint); font-size: 17px; font-weight:400; margin-left:auto; letter-spacing:.18em; }
+
+  /* understanding cards */
+  .grid2{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .grid3{ display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .card{
+    background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 22px 24px;
+  }
+  .card .lab{ font-size: 11px; letter-spacing:.14em; text-transform:uppercase; color: var(--ink-faint); margin-bottom: 9px; }
+  .card .val{ font-family: var(--serif); font-size: 19px; font-weight:500; color: var(--ink); line-height:1.4; }
+  .card p{ font-size: 14.5px; color: var(--ink-soft); margin-top:6px; }
+  .card .val .en{ font-family: var(--lat); font-style: italic; font-size: 16px; color: var(--ink-faint); }
+
+  /* doctor quote */
+  .quote{
+    margin: 8px 0 6px; padding: 30px 34px; background: var(--sage-deep);
+    color: oklch(0.96 0.012 95); border-radius: 14px; position: relative; overflow:hidden;
+  }
+  .quote .seal-stamp{
+    position:absolute; right: 26px; top: 26px; width: 64px; height:64px; border-radius:10px;
+    border: 2px solid oklch(0.96 0.012 95 / .5); display:grid; place-items:center; text-align:center;
+    font-family: var(--serif); font-size: 15px; line-height:1.15; color: oklch(0.96 0.012 95 / .85);
+    letter-spacing:.06em;
+  }
+  .quote .cn-q{ font-family: var(--serif); font-size: 20px; line-height: 1.95; max-width: 46ch; }
+  .quote .attr{ margin-top: 18px; font-family: var(--serif); font-size: 15px; color: oklch(0.92 0.02 120 / .8); letter-spacing:.05em; }
+
+  /* ---- design system ---- */
+  .swatches{ display:grid; grid-template-columns: repeat(6,1fr); gap: 12px; }
+  .sw{ border-radius: 10px; overflow:hidden; border:1px solid var(--line); background:var(--card); }
+  .sw .chip{ height: 64px; }
+  .sw .meta{ padding: 8px 10px; }
+  .sw .meta .n{ font-size: 12px; font-weight:600; }
+  .sw .meta .h{ font-size: 10.5px; color: var(--ink-faint); font-family: var(--lat); font-style:italic; }
+
+  .type-spec{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 8px; }
+  .spec{ background: var(--card); border:1px solid var(--line); border-radius:12px; padding: 22px 24px; }
+  .spec .role{ font-size: 11px; letter-spacing:.14em; text-transform:uppercase; color: var(--ink-faint); margin-bottom: 14px; }
+  .spec .big-cn{ font-family: var(--serif); font-weight:600; font-size: 38px; line-height:1.25; }
+  .spec .big-cn.sans{ font-family: var(--sans); font-weight:500; }
+  .spec .small{ margin-top: 10px; color: var(--ink-soft); font-size: 15px; }
+  .spec .fam{ margin-top: 14px; font-family:var(--lat); font-style:italic; color: var(--ink-faint); font-size: 14px; }
+
+  /* ---- sitemap ---- */
+  .map{ display:flex; flex-wrap:wrap; gap: 10px; }
+  .node{
+    background: var(--card); border:1px solid var(--line); border-radius: 999px; padding: 11px 20px;
+    display:flex; align-items:center; gap:10px; font-size: 15px;
+  }
+  .node .cn{ font-family: var(--serif); font-weight:500; }
+  .node .en{ font-family: var(--lat); font-style:italic; color: var(--ink-faint); font-size: 13px; }
+  .node.home{ background: var(--sage-deep); color: var(--paper); border-color: var(--sage-deep); }
+  .node.home .en{ color: oklch(0.92 0.02 120 / .7); }
+  .node.key{ border-color: var(--seal); }
+  .node.key .dot{ width:7px; height:7px; border-radius:50%; background:var(--seal); }
+
+  /* ---- directions ---- */
+  .dir{ display:grid; grid-template-columns: 200px 1fr; gap: 26px; align-items:start; padding: 26px 0; border-bottom: 1px dashed var(--line); }
+  .dir:last-child{ border-bottom: none; }
+  .dir-name{ }
+  .dir-name .idx{ font-family:var(--lat); font-style:italic; font-size: 15px; color: var(--seal); }
+  .dir-name h3{ font-family:var(--serif); font-size: 26px; font-weight:600; margin-top: 4px; }
+  .dir-name .cn{ font-family:var(--serif); font-size: 15px; color: var(--ink-faint); letter-spacing:.16em; margin-top:4px; }
+  .dir-body p{ font-size: 15.5px; color: var(--ink-soft); line-height:1.7; }
+  .dir-body .tags{ margin-top: 12px; display:flex; flex-wrap:wrap; gap:7px; }
+  .tag{ font-size: 12px; padding: 4px 11px; border-radius:999px; background: var(--paper-2); border:1px solid var(--line); color: var(--ink-soft); }
+
+  /* mini wireframes */
+  .wf{ width: 200px; height: 150px; border:1px solid var(--line); border-radius: 10px; background: var(--card); overflow:hidden; padding:0; }
+  .wf-bar{ height: 16px; background: var(--paper-2); border-bottom:1px solid var(--line-soft); display:flex; align-items:center; gap:4px; padding:0 7px; }
+  .wf-bar i{ display:block; width:5px;height:5px;border-radius:50%; background: var(--sage); }
+  .b{ background: var(--line-soft); border-radius:3px; }
+  .b.sage{ background: oklch(0.64 0.045 150 / .35); }
+  .b.deep{ background: oklch(0.45 0.05 158 / .55); }
+  .b.seal{ background: oklch(0.56 0.145 33 / .55); }
+
+  /* next steps */
+  .steps{ counter-reset: s; display:grid; gap: 12px; }
+  .step{ display:flex; gap:16px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:12px; padding:18px 22px; }
+  .step::before{ counter-increment:s; content: counter(s); font-family:var(--serif); font-weight:600; color:var(--seal); font-size:20px; line-height:1.2; min-width: 24px; }
+  .step .st-t{ font-family:var(--serif); font-weight:600; font-size:17px; }
+  .step .st-d{ font-size: 14.5px; color: var(--ink-soft); margin-top:3px; }
+
+  .q-list{ display:grid; gap:10px; margin-top: 6px; }
+  .q{ display:flex; gap:12px; font-size:15px; color:var(--ink-soft); }
+  .q::before{ content:"?"; color: var(--seal); font-family:var(--serif); font-weight:700; }
+  .q b{ color: var(--ink); font-weight:500; }
+
+  footer{ padding: 50px 0 70px; color: var(--ink-faint); font-size: 13px; text-align:center; }
+  footer .seal-dot{ margin: 0 auto 14px; }
+
+  @media (max-width: 720px){
+    .grid2,.grid3,.type-spec,.swatches{ grid-template-columns: 1fr 1fr; }
+    .dir{ grid-template-columns: 1fr; }
+    .ribbon nav{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="ribbon">
+  <div class="wrap">
+    <div class="mark"><span class="seal-dot">夏</span> 夏扬中医针灸 · Website Plan</div>
+    <nav>
+      <a href="#understand">Understanding</a>
+      <a href="#system">Design</a>
+      <a href="#map">Sitemap</a>
+      <a href="#dirs">Directions</a>
+      <a href="#next">Next</a>
+    </nav>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Design plan · 夏扬中医针灸诊所</div>
+    <h1 class="title">A heritage clinic site built to make one thing easy: <em>picking up the phone.</em></h1>
+    <p class="lede">Here's how I'm thinking about your website before we build. It's grounded in everything you sent — Dr. Xia's lineage, the registered credentials, the methods and conditions you treat. The whole site will be <b>in Chinese</b> for your community in Ontario, with a warm, traditional botanical feel and a phone number that's never more than a tap away. <b>Read through and tell me what to change.</b></p>
+  </div>
+</header>
+
+<!-- UNDERSTANDING -->
+<section class="block" id="understand">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">01</span><h2>What I heard</h2><span class="cn">我的理解</span></div>
+
+    <div class="grid3" style="margin-bottom:18px;">
+      <div class="card">
+        <div class="lab">Primary goal</div>
+        <div class="val">Call the clinic<br><span class="en">phone-first, every page</span></div>
+        <p>Booking is by phone only — so the number is the hero, with a sticky call button and click-to-dial on mobile.</p>
+      </div>
+      <div class="card">
+        <div class="lab">Audience</div>
+        <div class="val">本地华人社区<br><span class="en">Chinese community, Ontario</span></div>
+        <p>Patients seeking relief for chronic & difficult conditions. Site is written in Chinese throughout.</p>
+      </div>
+      <div class="card">
+        <div class="lab">Feeling</div>
+        <div class="val">温润 · 传世<br><span class="en">warm, traditional, botanical</span></div>
+        <p>Calm sage greens, paper warmth, classical serif type, a red seal motif — credible, not clinical-cold.</p>
+      </div>
+    </div>
+
+    <div class="quote">
+      <div class="seal-stamp">夏氏<br>世医</div>
+      <div class="cn-q">夏医生出生于世医之家，青年时期幸得道医罗青子点拨，深悟传统医道。临床诊病不用病人先开口，凭脉察色尽知病在何处，病根起源——每每药到病除，屡起沉疴。</div>
+      <div class="attr">夏 扬　·　安省注册中医针灸师　·　亚健康调理专家</div>
+    </div>
+    <p style="font-size:14px;color:var(--ink-faint);margin-top:14px;">This story — the family lineage, the master 罗青子, diagnosis by pulse alone — is your strongest trust asset. I'll give it a prominent home on both the homepage and the About page.</p>
+  </div>
+</section>
+
+<!-- DESIGN SYSTEM -->
+<section class="block" id="system">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">02</span><h2>The look &amp; feel</h2><span class="cn">视觉系统</span></div>
+
+    <p style="color:var(--ink-soft);margin-bottom:22px;max-width:62ch;">A botanical palette of soft sage and jade over warm paper, anchored by a single vermilion <em style="font-family:var(--lat)">seal</em> accent — a nod to the traditional 印章 stamp. Used sparingly, it signals heritage and authenticity without shouting.</p>
+
+    <div class="swatches" style="margin-bottom:26px;">
+      <div class="sw"><div class="chip" style="background:var(--paper)"></div><div class="meta"><div class="n">Paper</div><div class="h">warm cream bg</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--ink)"></div><div class="meta"><div class="n">Ink</div><div class="h">text</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--sage)"></div><div class="meta"><div class="n">Sage</div><div class="h">primary</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--sage-deep)"></div><div class="meta"><div class="n">Pine</div><div class="h">depth</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--jade)"></div><div class="meta"><div class="n">Jade</div><div class="h">support</div></div></div>
+      <div class="sw"><div class="chip" style="background:var(--seal)"></div><div class="meta"><div class="n">Seal</div><div class="h">accent only</div></div></div>
+    </div>
+
+    <div class="type-spec">
+      <div class="spec">
+        <div class="role">Headings · 标题</div>
+        <div class="big-cn">脉诊查病　药到病除</div>
+        <div class="small">Classical serif with weight and grace — sets the heritage tone for titles &amp; the doctor's story.</div>
+        <div class="fam">Noto Serif SC · 思源宋体</div>
+      </div>
+      <div class="spec">
+        <div class="role">Body &amp; UI · 正文</div>
+        <div class="big-cn sans">针灸　中药　食疗　点穴推拿</div>
+        <div class="small">A clean, highly legible sans for paragraphs, navigation, services and forms.</div>
+        <div class="fam">Noto Sans SC · 思源黑体</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITEMAP -->
+<section class="block" id="map">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Pages</h2><span class="cn">网站结构</span></div>
+    <p style="color:var(--ink-soft);margin-bottom:22px;max-width:60ch;">A fuller site. Pages marked <span style="color:var(--seal)">●</span> carry the call-to-action most heavily.</p>
+    <div class="map">
+      <div class="node home"><span class="cn">首页</span><span class="en">Home</span></div>
+      <div class="node"><span class="cn">关于夏医生</span><span class="en">About</span></div>
+      <div class="node"><span class="cn">诊疗服务</span><span class="en">Services</span></div>
+      <div class="node"><span class="cn">主治病症</span><span class="en">Conditions</span></div>
+      <div class="node"><span class="cn">收费</span><span class="en">Pricing</span></div>
+      <div class="node"><span class="cn">养生资讯</span><span class="en">Blog</span></div>
+      <div class="node key"><span class="dot"></span><span class="cn">联系与预约</span><span class="en">Contact · Call</span></div>
+    </div>
+    <p style="font-size:14px;color:var(--ink-faint);margin-top:18px;">Since there's one practitioner, I'd fold "Team" into a rich <b>About</b> page rather than a separate page — unless you have associates to feature. Services include 针灸 · 中药 · 不孕不育/妇科 · 疼痛 · 优生优育 · 儿科 · 学习障碍 · 抑郁症 · 美容.</p>
+  </div>
+</section>
+
+<!-- DIRECTIONS -->
+<section class="block" id="dirs">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Three homepage directions</h2><span class="cn">三个方向</span></div>
+    <p style="color:var(--ink-soft);margin-bottom:10px;max-width:62ch;">All share the palette &amp; type above — they differ in layout and mood. Next step is to build these three as real screens so you can compare. Pick one (or mix).</p>
+
+    <div class="dir">
+      <div class="dir-name">
+        <div class="wf">
+          <div class="wf-bar"><i></i><i></i><i></i></div>
+          <div style="padding:8px;display:grid;gap:5px;">
+            <div class="b deep" style="height:46px;border-radius:5px;"></div>
+            <div class="b seal" style="height:9px;width:50%;"></div>
+            <div class="b" style="height:6px;width:80%;"></div>
+            <div style="display:flex;gap:4px;"><div class="b sage" style="height:18px;width:33%;"></div><div class="b sage" style="height:18px;width:33%;"></div><div class="b sage" style="height:18px;width:33%;"></div></div>
+          </div>
+        </div>
+        <div class="idx">Direction A</div>
+        <h3>Heritage Apothecary</h3>
+        <div class="cn">悬壶</div>
+      </div>
+      <div class="dir-body">
+        <p>Photo-led and editorial. A full-bleed warm image of the treatment room or dried herbs fills the hero, with a serif headline and the phone number overlaid. The red seal stamp sits in a corner like a signature. Vertical Chinese type accents and a quiet, authoritative tone. This leans hardest into <b>trust &amp; lineage</b> — it feels like a long-established practice.</p>
+        <div class="tags"><span class="tag">Photo hero</span><span class="tag">Editorial</span><span class="tag">Seal motif</span><span class="tag">Most traditional</span></div>
+      </div>
+    </div>
+
+    <div class="dir">
+      <div class="dir-name">
+        <div class="wf">
+          <div class="wf-bar"><i></i><i></i><i></i></div>
+          <div style="padding:8px;display:grid;gap:6px;place-items:center;">
+            <div class="b" style="height:7px;width:30%;margin-top:6px;"></div>
+            <div class="b deep" style="height:11px;width:64%;"></div>
+            <div class="b" style="height:5px;width:44%;"></div>
+            <div style="display:flex;gap:5px;margin-top:6px;"><div class="b sage" style="height:30px;width:30px;border-radius:50%;"></div><div class="b sage" style="height:30px;width:30px;border-radius:50%;"></div><div class="b sage" style="height:30px;width:30px;border-radius:50%;"></div></div>
+          </div>
+        </div>
+        <div class="idx">Direction B</div>
+        <h3>Botanical Calm</h3>
+        <div class="cn">本草</div>
+      </div>
+      <div class="dir-body">
+        <p>Airy and serene, spa-like. Lots of cream whitespace, a centered serif headline, delicate botanical line motifs, and soft sage cards for each service. Minimal imagery, maximum calm — it lowers the anxiety of someone in pain or seeking help. The gentlest, most <b>welcoming</b> of the three.</p>
+        <div class="tags"><span class="tag">Whitespace</span><span class="tag">Centered</span><span class="tag">Serene</span><span class="tag">Soft cards</span></div>
+      </div>
+    </div>
+
+    <div class="dir">
+      <div class="dir-name">
+        <div class="wf">
+          <div class="wf-bar"><i></i><i></i><i></i></div>
+          <div style="padding:8px;display:grid;grid-template-columns:1.3fr 1fr;gap:6px;">
+            <div style="display:grid;gap:5px;"><div class="b deep" style="height:13px;width:90%;"></div><div class="b" style="height:5px;width:70%;"></div><div class="b seal" style="height:14px;width:55%;border-radius:5px;margin-top:4px;"></div></div>
+            <div style="display:grid;gap:4px;"><div class="b sage" style="height:9px;"></div><div class="b sage" style="height:9px;"></div><div class="b sage" style="height:9px;"></div><div class="b sage" style="height:9px;"></div></div>
+          </div>
+        </div>
+        <div class="idx">Direction C</div>
+        <h3>Modern Heritage</h3>
+        <div class="cn">脉</div>
+      </div>
+      <div class="dir-body">
+        <p>A structured editorial grid with strong typographic hierarchy and an asymmetric layout. The long list of treatable conditions becomes an elegant index — turning your breadth of expertise into a confident showpiece. Respects tradition but feels <b>contemporary and designed</b>, the most distinctive of the three.</p>
+        <div class="tags"><span class="tag">Editorial grid</span><span class="tag">Condition index</span><span class="tag">Asymmetric</span><span class="tag">Most modern</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEXT -->
+<section class="block" id="next">
+  <div class="wrap">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Next steps &amp; what I need</h2><span class="cn">下一步</span></div>
+    <div class="steps" style="margin-bottom:28px;">
+      <div class="step"><div><div class="st-t">You react to this plan</div><div class="st-d">Confirm the palette, type, sitemap, and which direction(s) interest you — or tell me what's off.</div></div></div>
+      <div class="step"><div><div class="st-t">I build the 3 homepage directions</div><div class="st-d">Real, full-width Chinese screens side by side so you can judge them properly, not as thumbnails.</div></div></div>
+      <div class="step"><div><div class="st-t">You pick one, I build the clickable prototype</div><div class="st-d">The full site — every page, working navigation, click-to-call — as an interactive prototype.</div></div></div>
+    </div>
+
+    <div class="sec-head" style="margin-top:10px;"><span class="sec-num">·</span><h2 style="font-size:21px;">A few things that would help</h2></div>
+    <div class="q-list">
+      <div class="q"><div><b>Clinic name &amp; logo.</b> Is "夏扬中医针灸" the name, or is there a formal clinic name (and an English name for Ontario signage)?</div></div>
+      <div class="q"><div><b>Phone, address &amp; hours.</b> The exact number, clinic address, and opening hours so the call-to-action is real.</div></div>
+      <div class="q"><div><b>Photos.</b> You mentioned professional photos — the treatment room, Dr. Xia, herbs. Send them when ready; I'll use placeholders meanwhile.</div></div>
+      <div class="q"><div><b>Pricing.</b> Do you want to publish prices, or just "call for a consultation"?</div></div>
+      <div class="q"><div><b>Bilingual?</b> All Chinese, or a small English option for Ontario patients / their family members?</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="seal-dot">夏</div>
+  夏扬中医针灸诊所 · website design plan · names &amp; details shown are placeholders pending your confirmation
+</footer>
+
+</body>
+</html>
