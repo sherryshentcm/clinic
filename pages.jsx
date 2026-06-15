@@ -49,7 +49,7 @@ function AboutPage({ go }) {
         <div className="wrap">
           <div className="feature">
             <div className="fade">
-              <Slot id="about-portrait" ph={t("夏医师肖像", "Practitioner Xia portrait")} />
+              <Slot id="about-portrait" src="images/xia-about.jpg" ph={t("夏医师肖像", "Practitioner Xia portrait")} />
             </div>
             <div className="fade">
               <div className="no">夏 扬　·　Xia, Yang R.TCMP/AC</div>
