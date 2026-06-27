@@ -52,7 +52,7 @@ function StorySection({ go }) {
           </div>
           <div className="fade">
             <div className="eyebrow">{t("关于夏医师", "About Xia, Yang")}</div>
-            <h2 className="h">{t("不用病人先开口，望闻问切尽知病源。", "He reads the pulse — and knows, before you speak.")}</h2>
+            <h2 className="h">{t(" 望闻问切，细察病机，寻本溯源。", "He reads the pulse — and knows, before you speak.")}</h2>
             <div className="qmark">“</div>
             <p className="bio">{lang === "en" ? CLINIC.bio.en : CLINIC.bio.zh}</p>
             <div className="sig">

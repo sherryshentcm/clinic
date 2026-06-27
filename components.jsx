@@ -124,6 +124,7 @@ function Footer({ go }) {
               <a href="#" onClick={click("about")}>{label("about")}</a>
               <a href="#" onClick={click("contact")}>{label("contact")}</a>
               <a href={`tel:${CLINIC.phoneRaw}`}>{CLINIC.phone}</a>
+              <a href="tel:9058481552">905-848-1552</a>
             </div>
             <div className="col">
               <h5>{t("到访", "Visit")}</h5>
