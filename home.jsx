@@ -19,7 +19,6 @@ function Hero({ go }) {
           "Born into generations of physicians, Practitioner Xia reads the pulse and complexion to find where an illness lies and where it begins. Ailments that long resisted treatment may finally find relief.")}</p>
         <div className="actions">
           <a href={`tel:${CLINIC.phoneRaw}`} className="btn btn-seal"><PhoneIcon /> {t("致电预约", "Call to book")} {CLINIC.phone}</a>
-          <a href="tel:9058481552" className="btn btn-seal"><PhoneIcon /> {t("致电预约", "Call to book")} 905-848-1552</a>
           <a href="#" className="btn btn-light" onClick={(e) => { e.preventDefault(); go("about"); }}>{t("认识夏医师", "Meet Practitioner Xia")}</a>
           <span className="micro">{t("接受电话预约 · 周二至周六应诊", "By phone appointment · Open Tue–Sat")}</span>
         </div>
@@ -179,7 +178,10 @@ function LocateCTA() {
             </p>
             <div className="bigcall">
               <SealStamp>致电<br/>预约</SealStamp>
-              <a href={`tel:${CLINIC.phoneRaw}`} className="num">{CLINIC.phone}</a>
+              <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                <a href={`tel:${CLINIC.phoneRaw}`} className="num">{CLINIC.phone}</a>
+                <a href="tel:9058481552" className="num">905-848-1552</a>
+              </div>
             </div>
             <div className="info-row" style={{ marginTop: 26 }}>
               <span className="k">{t("地址", "Address")}</span>
