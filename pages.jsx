@@ -38,7 +38,7 @@ function AboutPage({ go }) {
   const ways = [
     { gl: "家", zh: "世医之家", en: "A lineage of physicians", dzh: "出生于数代行医的世医之家，自幼浸润于传统医道，耳濡目染、根基深厚。", den: "Born into generations of physicians, immersed in the traditional way of medicine from a young age — deeply rooted." },
     { gl: "师", zh: "道医点拨", en: "Guided by a master", dzh: "青年时期幸得道医罗青子点拨，后经多年拜师学艺历练，深悟传统医道之精微。", den: "In his youth, guided by the Taoist healer Luo Qingzi, then many years of apprenticeship refined his understanding." },
-    { gl: "证", zh: "临证如神", en: "Mastery in the clinic", dzh: "诊病不用病人先开口，望闻问切尽知病在何处、病根起源，每每药到病除。", den: "He diagnoses before a word is spoken — reading pulse and complexion to find the illness and its root." },
+    { gl: "证", zh: "临证经验丰富", en: "Mastery in the clinic", dzh: "望闻问切尽知病在何处、病根起源，每每药到病除。", den: "He diagnoses before a word is spoken — reading pulse and complexion to find the illness and its root." },
   ];
   return (
     <main>
