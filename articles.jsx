@@ -11,7 +11,7 @@
    shows a graceful "coming soon" state.
 
    Each article shape (also the CMS field shape):
-     slug   string                unique id, used in the URL (#article/<slug>)
+     slug   string                unique id, used in the URL (/articles/<slug>/)
      cat    {zh,en}               category label
      title  {zh,en}
      date   {zh,en}
@@ -20,6 +20,7 @@
      ex     {zh,en}               one-line excerpt for cards
      body   {zh,en}               markdown-lite: "## " = subhead,
                                   "> " = note box, one line = one paragraph
+     cover  string                optional article cover image path
    ============================================================ */
 
 const ARTICLE_FALLBACK = []; // articles are added via the CMS (content/articles.json)
@@ -40,6 +41,8 @@ async function loadArticles() {
 const ArticlesContext = React.createContext(ARTICLE_FALLBACK);
 function useArticles() { return React.useContext(ArticlesContext); }
 const pick = (v, lang) => (v && typeof v === "object" ? (lang === "en" ? v.en : v.zh) : v);
+const articleUrl = (slug) => `/articles/${slug}/`;
+const articleCover = (a) => a && a.cover ? a.cover : "images/xia-yang.jpg";
 
 // ── markdown-lite renderer ──────────────────────────────────────────────────
 function ArticleBody({ text }) {
@@ -77,14 +80,14 @@ function ArticleGrid({ go }) {
   return (
     <div className="blog-grid">
       {articles.map((p) => (
-        <div className="post fade" key={p.slug} onClick={() => go("article/" + p.slug)}>
-          <Slot id={`cover-${p.slug}`} ph={t("配图", "article image")} />
+        <a className="post fade" key={p.slug} href={articleUrl(p.slug)}>
+          <Slot id={`cover-${p.slug}`} src={articleCover(p)} ph={t("配图", "article image")} />
           <div className="cat">{pick(p.cat, lang)}</div>
           <h3>{pick(p.title, lang)}</h3>
           <div className="meta">{pick(p.date, lang)}　·　{pick(p.author, lang)}</div>
           <div className="ex">{pick(p.ex, lang)}</div>
           <div className="post-more">{t("阅读全文", "Read article")} →</div>
-        </div>
+        </a>
       ))}
     </div>
   );
@@ -130,7 +133,7 @@ function ArticlePage({ go, slug }) {
         </div>
         <div className="wrap article-wrap">
           <div className="article-cover fade">
-            <Slot id={`cover-${a.slug}`} ph={t("文章配图", "article image")} radius={16} />
+            <Slot id={`cover-${a.slug}`} src={articleCover(a)} ph={t("文章配图", "article image")} radius={16} />
           </div>
           <div className="fade">
             <ArticleBody text={pick(a.body, lang)} />

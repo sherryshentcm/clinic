@@ -59,6 +59,12 @@ collections:
                   - { label: "中文", name: "zh", widget: "string" }
                   - { label: "English", name: "en", widget: "string" }
 
+              - label: "封面图片 Cover image"
+                name: "cover"
+                widget: "image"
+                required: false
+                hint: "用于文章卡片、文章页面和分享预览。Recommended: landscape photo, at least 1200px wide."
+
               - label: "作者 Author"
                 name: "author"
                 widget: "object"

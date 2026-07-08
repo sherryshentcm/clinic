@@ -11,16 +11,18 @@ deploy), see **`Publishing-Guide.html`** (written for the clinic owner).
 
 ## What this is (tech overview)
 
-- **Static, no build step.** Plain HTML + CSS, with React 18 + Babel
+- **Static site with a small article build step.** Plain HTML + CSS, with React 18 + Babel
   transformed **in the browser** via `<script type="text/babel">`. There is
-  nothing to compile — the files are deployed exactly as they sit in the repo.
-- **Single page app** with hash routing (`#home`, `#about`, … `#article/<slug>`).
+  no dependency install; Netlify runs `node tools/build-articles.js` to generate article pages.
+- **Single page app** with hash routing for core pages (`#home`, `#about`, …)
+  plus SEO-friendly generated article URLs (`/articles/<slug>/`).
 - **Bilingual** via a tiny `t(zh, en)` helper + a language toggle; choice is
   auto-detected from the browser and remembered in `localStorage`.
-- **Images** use a custom `<image-slot>` element: editors drag a photo onto a
-  slot and it persists to a sidecar file (`.image-slots.state.json`).
-- **Articles** load at runtime from `content/articles.json`; the Decap CMS in
-  `admin/` edits that same file.
+- **Reusable site images** use a custom `<image-slot>` element: editors can drag
+  a photo onto a slot and it persists to a sidecar file (`.image-slots.state.json`).
+  Article cover images are selected directly in the CMS.
+- **Articles** load at runtime from `content/articles.json` for the Journal,
+  and the build script generates crawlable `/articles/<slug>/` pages plus `sitemap.xml`.
 
 > Note: in-browser Babel is fine for this traffic level but recompiles on every
 > load. If you later want to optimise, precompile the `.jsx` to plain JS and
@@ -41,10 +43,11 @@ app.jsx                 Router + language/articles providers (mounts <App/>)
 image-slot.js           <image-slot> web component (user-fillable images)
 
 content/articles.json   ← ARTICLES LIVE HERE (the CMS reads/writes this)
+tools/build-articles.js Generates /articles/<slug>/ pages + sitemap.xml
 admin/index.html        Decap CMS loader  (dashboard at /admin/)
 admin/config.yml        Decap CMS field definitions
 images/                 Site/article images
-netlify.toml            Netlify config (publish = repo root, no build)
+netlify.toml            Netlify config (publish = repo root, article build command)
 
 Publishing-Guide.html   Owner-facing guide for adding articles
 Plan.html               Original design plan (reference only; not part of the site)
@@ -59,8 +62,8 @@ Plan.html               Original design plan (reference only; not part of the si
    `admin/config.yml`).
 
 2. **Connect Netlify.** In Netlify → *Add new site → Import an existing
-   project* → pick the repo. No build command, publish directory `.`
-   (already set in `netlify.toml`). Deploy → you get a free
+   project* → pick the repo. Use the build settings from `netlify.toml`:
+   command `node tools/build-articles.js`, publish directory `.`. Deploy → you get a free
    `your-name.netlify.app` URL.
 
 3. **Enable Identity.** Site configuration → *Identity* → **Enable Identity**.
@@ -73,7 +76,7 @@ Plan.html               Original design plan (reference only; not part of the si
 
 6. **Publish articles.** Go to `your-site/admin/`, log in, and use the
    **养生资讯 · Articles** collection. Changes commit to
-   `content/articles.json` and redeploy automatically.
+   `content/articles.json`, generates SEO-friendly article pages, and redeploys automatically.
 
 ### Custom domain (optional)
 Netlify → *Domain management* → add e.g. `xiastcm.com` and follow the DNS
@@ -87,7 +90,8 @@ instructions. HTTPS is automatic.
   edit `data.jsx`. Phone number lives once in `CLINIC.phone` / `CLINIC.phoneRaw`.
 - **Articles:** edit `content/articles.json` (array under `articles`). Each
   entry is bilingual; `body.zh` / `body.en` use markdown-lite — `## ` for a
-  subhead, `> ` for a note box, one line per paragraph.
+  subhead, `> ` for a note box, one line per paragraph. Optional `cover`
+  stores the article cover image path.
 - **Hours:** `CLINIC.hours` in `data.jsx` (`closed: true` marks a day off —
   currently Sunday & Monday).
 

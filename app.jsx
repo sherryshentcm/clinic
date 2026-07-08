@@ -72,7 +72,10 @@ function setSeo(route, lang, articles) {
   upsertMeta('meta[name="description"]', { name: "description", content: meta.description });
   upsertMeta('meta[property="og:title"]', { property: "og:title", content: meta.title });
   upsertMeta('meta[property="og:description"]', { property: "og:description", content: meta.description });
-  upsertMeta('meta[property="og:url"]', { property: "og:url", content: SEO_BASE_URL + (route === "home" ? "" : "#" + route) });
+  upsertMeta('meta[property="og:url"]', {
+    property: "og:url",
+    content: isArticle ? `${SEO_BASE_URL}articles/${route.slice("article/".length)}/` : SEO_BASE_URL + (route === "home" ? "" : "#" + route),
+  });
   upsertMeta('meta[name="twitter:title"]', { name: "twitter:title", content: meta.title });
   upsertMeta('meta[name="twitter:description"]', { name: "twitter:description", content: meta.description });
 }

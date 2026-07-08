@@ -360,7 +360,7 @@ h2.h{ font-family: var(--serif); font-weight: 600; font-size: clamp(30px, 4vw, 4
 .price-card li::before{ content:"·"; color: var(--seal); font-weight:700; }
 
 .blog-grid{ display:grid; grid-template-columns: repeat(3,1fr); gap: 26px; }
-.post{ cursor:pointer; }
+.post{ display:block; cursor:pointer; color:inherit; text-decoration:none; }
 .post image-slot{ width:100%; aspect-ratio: 3/2; }
 .post .cat{ font-family: var(--lat); font-style:italic; color: var(--seal); font-size: 14px; margin-top: 16px; }
 .post h3{ font-family: var(--serif); font-size: 21px; font-weight:600; margin-top: 6px; line-height:1.4; transition: color .2s; }

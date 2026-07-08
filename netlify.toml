@@ -1,10 +1,9 @@
 # Netlify configuration — 夏草堂 Xia's TCM
-# Static site, no build step (HTML + in-browser Babel/React + image-slot).
-# Just serve the project folder as-is.
+# Static site with a tiny build step that generates SEO-friendly article pages.
 
 [build]
   publish = "."
-  command = ""
+  command = "node tools/build-articles.js"
 
 # Always revalidate the article content file so newly published articles
 # appear immediately (everything else can cache normally).
