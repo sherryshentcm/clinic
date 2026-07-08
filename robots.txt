@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /Plan.html
+Disallow: /Publishing-Guide.html
+Disallow: /夏草堂-review.html
+
+Sitemap: https://xiastcm.com/sitemap.xml

@@ -1,0 +1,17 @@
+{
+  "name": "夏草堂 Xia's TCM",
+  "short_name": "Xia's TCM",
+  "description": "Traditional Chinese Medicine and acupuncture clinic in Mississauga, Ontario.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "browser",
+  "background_color": "#f6f3ea",
+  "theme_color": "#3a5a45",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml"
+    }
+  ]
+}
