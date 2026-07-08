@@ -1,3 +1,35 @@
 {
-  "articles": []
+  "articles": [
+    {
+      "author": {
+        "zh": "夏 扬",
+        "en": "Xia, Yang"
+      },
+      "read": {
+        "zh": "约 4 分钟",
+        "en": "4 min read"
+      },
+      "slug": "coughing",
+      "cat": {
+        "zh": "内科",
+        "en": "Physician"
+      },
+      "title": {
+        "zh": "久咳不愈",
+        "en": "coughing"
+      },
+      "date": {
+        "zh": "立夏",
+        "en": "Summer"
+      },
+      "ex": {
+        "zh": "久咳不愈",
+        "en": "Coughing"
+      },
+      "body": {
+        "zh": "久咳不愈",
+        "en": "Coughing"
+      }
+    }
+  ]
 }
